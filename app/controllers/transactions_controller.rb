@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       if @transaction.save
 
-        # Busca as contas envolvidas na transferencia
+        # Busca as contas envolvidas na Transferência
         account_target = Account.find_by(account_num: @transaction.account_num_target)
         account_source = Account.find_by(account_num: @transaction.account_num_source)
 
