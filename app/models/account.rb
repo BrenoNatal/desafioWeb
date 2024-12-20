@@ -6,7 +6,7 @@ class Account < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :rememberable, :validatable
 
-
+  has_many :deposits
 
   validates :account_num, uniqueness: true, length: { is: 5 }
 

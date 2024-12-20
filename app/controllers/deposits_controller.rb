@@ -1,4 +1,5 @@
 class DepositsController < ApplicationController
+  before_action :authenticate_account!
   before_action :set_deposit, only: %i[ show edit update destroy ]
 
   # GET /deposits or /deposits.json
@@ -22,6 +23,11 @@ class DepositsController < ApplicationController
   # POST /deposits or /deposits.json
   def create
     @deposit = Deposit.new(deposit_params)
+
+    account = Account.where(id: @deposit.account_id)[0]
+
+    account.balance = account.balance + @deposit.amount
+    account.save
 
     respond_to do |format|
       if @deposit.save
@@ -65,6 +71,6 @@ class DepositsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deposit_params
-      params.expect(deposit: [ :amount ])
+      params.expect(deposit: [ :amount, :account_id ])
     end
 end

@@ -7,7 +7,7 @@
 
     <div class="mb-3 field">
       <%= f.label :"Numero da Conta (Exatamente 5 dígitos)" %><br />
-      <%= f.number_field :account_num, autofocus: true, class:"form-control"%>
+      <%= f.number_field :account_num, autofocus: true, class:"form-control", pattern: "[0-9]*"%>
     </div>
 
     <div class="mb-3 fied">
