@@ -11,5 +11,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_in, keys: [ :login, :password, :password_confirmation ])
     devise_parameter_sanitizer.permit(:account_update, keys: [ :email, :account_num, :current_password, :password_confirmation, :vip  ])
   end
-
 end

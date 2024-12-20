@@ -13,7 +13,7 @@
   <form>
     <div>
       <%= form.label "Valor", style: "display: block" %>
-      <%= form.number_field :amount, class:"form-control" %>
+      <%= form.text_field :amount, class:"form-control" %>
     </div>
 
     <%= form.number_field :account_id, id: :account_id, class:"form-control", value: current_account.id, type: :hidden  %>
