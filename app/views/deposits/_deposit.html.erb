@@ -1,7 +1,19 @@
 <div id="<%= dom_id deposit %>">
-  <p>
-    <strong>Amount:</strong>
-    <%= deposit.amount %>
-  </p>
+    <div class="mb-3">
+      <h5>
+        <strong>Valor: </strong>
+      </h5>
+      <h3>
+        <%= number_with_precision(deposit.amount, :precision => 2) %>
+      </h3>
+    </div>
 
+    <div class="mb-3">
+      <h5>
+        <strong>Feita:</strong>
+      </h5>
+      <h3>
+        <%= deposit.created_at.in_time_zone('Brasilia').strftime("%d/%m/%Y  às %H:%M:%S") %>
+      </h3>
+    </div>
 </div>

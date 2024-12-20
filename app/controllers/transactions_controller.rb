@@ -27,13 +27,15 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       if @transaction.save
 
+        # Busca as contas envolvidas na transferencia
         account_target = Account.find_by(account_num: @transaction.account_num_target)
-        puts account_target.inspect
         account_source = Account.find_by(account_num: @transaction.account_num_source)
 
+        # Atualiza o saldo das contas
         account_target.balance = account_target.balance + @transaction.amount
         account_source.balance = account_source.balance - @transaction.amount
 
+        # Salva as mudanças
         account_target.save
         account_source.save
 

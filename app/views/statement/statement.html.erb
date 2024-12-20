@@ -1,8 +1,8 @@
 <div class="d-flex flex-wrap flex-row gap-3">
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">Saldo</h5>
-            <p class="card-text">R$ <%= number_with_precision(current_account.balance, :precision => 2)%></p>
+            <h2 class="card-title">Saldo</h2>
+            <h4 class="card-text">R$ <%= number_with_precision(current_account.balance, :precision => 2)%></h4>
         </div>
     </div>
 <div>
@@ -13,27 +13,27 @@
         <% case movement %>
         <% when Deposit %>
             <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Deposito de:</h5>
-                    <p class="card-text">R$ <%= movement.amount%></p>
-                    <p class="card-text">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d-%m-%Y %H:%M:%S") %></p>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title mb-3">Deposito de: R$ <%= number_with_precision(movement.amount, :precision => 2) %> </h5>                    
+                    <h6 class="card-text mb-3">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d/%m/%Y  às %H:%M:%S") %></h6>
+                    <%= link_to "Ver Detalhes", movement, class:"btn btn-primary mt-auto " %>
                 </div>
             </div>
         <% when Withdrawal %>
             <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Saque de:</h5>
-                    <p class="card-text">R$ <%= movement.amount%></p>
-                    <p class="card-text">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d-%m-%Y %H:%M:%S") %></p>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title mb-3">Saque de: R$ <%= number_with_precision(movement.amount, :precision => 2) %> </h5>                    
+                    <h6 class="card-text mb-3">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d/%m/%Y  às %H:%M:%S") %></h6>
+                    <%= link_to "Ver Detalhes", movement, class:"btn btn-primary mt-auto" %>
                 </div>
             </div>
         <% when Transaction %>
             <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Transição de:</h5>
-                    <p class="card-text">R$ <%= movement.amount%></p>
-                    <p class="card-text">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d-%m-%Y %H:%M:%S") %></p>
-                    <p class="card-text">De: <%= movement.account_num_source %> Para: <%= movement.account_num_target %></p>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title mb-3">Transição de: R$ <%= number_with_precision(movement.amount, :precision => 2) %> </h5>                    
+                    <h6 class="card-text mb-3">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d/%m/%Y  às %H:%M:%S") %></h6>
+                    <h6 class="card-text mb-3">De: <%= movement.account_num_source %> Para: <%= movement.account_num_target %></h6>
+                    <%= link_to "Ver Detalhes", movement, class:"btn btn-primary mt-auto" %>
                 </div>
             </div>
        <% else %>

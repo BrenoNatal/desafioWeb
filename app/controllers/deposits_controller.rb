@@ -24,13 +24,18 @@ class DepositsController < ApplicationController
   def create
     @deposit = Deposit.new(deposit_params)
 
-    account = Account.where(id: @deposit.account_id)[0]
-
-    account.balance = account.balance + @deposit.amount
-    account.save
-
     respond_to do |format|
       if @deposit.save
+
+        # Busca a conta envolvida
+        account = Account.where(id: @deposit.account_id)[0]
+
+        # Atualiza o saldo das conta
+        account.balance = account.balance + @deposit.amount
+
+        # Salva as mudanças
+        account.save
+
         format.html { redirect_to @deposit, notice: "Deposit was successfully created." }
         format.json { render :show, status: :created, location: @deposit }
       else

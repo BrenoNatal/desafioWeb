@@ -24,13 +24,18 @@ class WithdrawalsController < ApplicationController
   def create
     @withdrawal = Withdrawal.new(withdrawal_params)
 
-    account = Account.where(id: @withdrawal.account_id)[0]
-
-    account.balance = account.balance - @withdrawal.amount
-    account.save
-
     respond_to do |format|
       if @withdrawal.save
+
+        # Busca a conta envolvida
+        account = Account.where(id: @withdrawal.account_id)[0]
+
+        # Atualiza o saldo das conta
+        account.balance = account.balance - @withdrawal.amount
+
+        # Salva as mudanças
+        account.save
+
         format.html { redirect_to @withdrawal, notice: "Withdrawal was successfully created." }
         format.json { render :show, status: :created, location: @withdrawal }
       else

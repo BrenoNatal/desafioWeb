@@ -1,12 +1,19 @@
 <div id="<%= dom_id withdrawal %>">
-  <p>
-    <strong>Amount:</strong>
-    <%= withdrawal.amount %>
-  </p>
+    <div class="mb-3">
+      <h5>
+        <strong>Valor: </strong>
+      </h5>
+      <h3>
+        <%= number_with_precision(withdrawal.amount, :precision => 2) %>
+      </h3>
+    </div>
 
-  <p>
-    <strong>Account:</strong>
-    <%= withdrawal.account_id %>
-  </p>
-
+    <div class="mb-3">
+      <h5>
+        <strong>Feita:</strong>
+      </h5>
+      <h3>
+        <%= withdrawal.created_at.in_time_zone('Brasilia').strftime("%d/%m/%Y  às %H:%M:%S") %>
+      </h3>
+    </div>
 </div>

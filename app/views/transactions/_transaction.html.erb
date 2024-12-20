@@ -1,32 +1,47 @@
 <div id="<%= dom_id transaction %>">
-  <p>
-    <strong>Amount:</strong>
-    <%= transaction.amount %>
-  </p>
+    <div class="mb-3">
+      <h5>
+        <strong>Valor: </strong>
+      </h5>
+      <h3>
+        <%= number_with_precision(transaction.amount, :precision => 2) %>
+      </h3>
+    </div>
+    
+    <div class="mb-3">
+      <h5>
+        <strong>Para Conta:</strong>
+      </h5>
+      <h3>
+        <%= transaction.account_num_target %>
+      </h3>
+    </div>
+    
+    <div class="mb-3">
+      <h5>
+        <strong>Da Conta:</strong>
+      </h5>
+      <h3>
+        <%= transaction.account_num_source %>
+      </h3>
+    </div>
 
-  <p>
-    <strong>Description:</strong>
-    <%= transaction.description %>
-  </p>
+    <div class="mb-3">
+      <h5>
+        <strong>Feita:</strong>
+      </h5>
+      <h3>
+        <%= transaction.created_at.in_time_zone('Brasilia').strftime("%d/%m/%Y  às %H:%M:%S") %>
+      </h3>
+    </div>
 
-  <p>
-    <strong>Account id target:</strong>
-    <%= transaction.account_id_target %>
-  </p>
-
-  <p>
-    <strong>Account id source:</strong>
-    <%= transaction.account_id_source %>
-  </p>
-
-  <p>
-    <strong>Account num target:</strong>
-    <%= transaction.account_num_target %>
-  </p>
-
-  <p>
-    <strong>Account num source:</strong>
-    <%= transaction.account_num_source %>
-  </p>
+    <div class="mb-3">
+      <h5>
+        <strong>Descrição:</strong>
+      </h5>
+      <p class="h4"> 
+        <%= transaction.description %>
+      </p>
+    </div>
 
 </div>
