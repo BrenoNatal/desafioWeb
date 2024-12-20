@@ -7,6 +7,7 @@ class Account < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :validatable
 
   has_many :deposits
+  has_many :withdrawals
 
   validates :account_num, uniqueness: true, length: { is: 5 }
 
