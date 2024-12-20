@@ -1,2 +1,46 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container">
+
+    <div class="bg-light p-5 rounded-lg m-3">
+        <h1 class="display-4">Desafio: Gerenciador de Conta Corrente </h1>
+        <hr class="my-4">
+        <h2>Persistência</h2>
+        <p>Postgres</p>
+
+        <h2>Requisitos:</h2>
+        <h3>Identificação/Login do Correntista</h3>
+        <p>Entradas: conta corrente (5 dígitos) e senha (4 dígitos).</p>
+        <h3>Opções</h3>
+        <ul>
+            <li>Ver Saldo</li>
+                <ul> 
+                    <li>Apenas o valor atualizado em R$.</li>
+                </ul>
+            <li>Extrato</li>
+                <ul> 
+                    <li>Exibirá data, hora, descrição e valor (entre parênteses quando negativo) de cada movimentação.</li>
+                </ul>
+            <li>Saque: </li>
+                <ul> 
+                    <li>O usuário Normal não pode sacar além do valor em saldo. O VIP pode, mas terá seu saldo reduzido em 0.1% por minuto até que sejam feitos depósitos suficientes para cobrir o saldo negativo.</li>
+                </ul>
+            <li>Depósito</li>
+            <li>Transferência</li>
+                <ul>
+                    <li>Cada usuário poderá realizar transferências informando o valor e a conta corrente do destinatário (não pode transferir para si mesmo nem para conta inexistente).</li>
+                    <li>As transferências aparecerão nos extratos tanto do cedente quanto do sacado.</li>
+                    <li>O usuário Normal poderá fazer transferências de até R$1000,00. O VIP não terá limite.</li>
+                    <li>O usuário Normal será debitado em R$8,00 por transferência e o VIP em 0,8% do valor transferido. Deverão ser destacados esses débitos no extrato.</li>
+                </ul>
+            <li>Solicitar visita do gerente</li>
+                <ul> 
+                    <li>Apenas o usuário VIP pode ver a opção "Solicitar visita do gerente". Esta opção precisa ser confirmada pelo usuário e, após a confirmação, apenas debita R$50,00 da conta do usuário.</li>
+                </ul>
+            <li>Trocar de usuário</li>
+                <ul> 
+                    <li>Deve ser possível sair da conta do usuário e entrar em outro para verificar as movimentações.</li>
+                </ul>
+        
+        </ul>
+    </div>
+
+</div>
