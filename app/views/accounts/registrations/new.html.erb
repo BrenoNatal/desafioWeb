@@ -1,29 +1,43 @@
-<h2>Sign up</h2>
+<h2>Criar Conta</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "accounts/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <form>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="mb-3 field">
+      <%= f.label :"Numero da Conta (Exatamente 5 dígitos)" %><br />
+      <%= f.number_field :account_num, autofocus: true, class:"form-control"%>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="mb-3 fied">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <div class="mb-3 field">
+      <%= f.label :"Senha" %>
+      <% if @minimum_password_length %>
+      <em>(Exatamente <%= @minimum_password_length %> dígitos)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", pattern: "[0-9]*" , class:"form-control"%>
+    </div>
+
+    <div class="mb-3 field">
+      <%= f.label :"Confirmar Senha" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+    </div>
+
+    <div class="field mb-3 form-check">
+      <%= f.check_box :vip , class:"form-check-input" %>
+      <%= f.label :"Conta VIP" %>
+    </div>
+
+    <div class="mb-3 actions">
+      <%= f.submit "Criar Conta", class:"btn btn-primary" %>
+    </div>
+
+  </form>
 <% end %>
 
 <%= render "accounts/shared/links" %>
