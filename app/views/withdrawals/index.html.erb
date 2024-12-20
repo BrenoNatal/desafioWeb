@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Withdrawals" %>
+
+<h1>Withdrawals</h1>
+
+<div id="withdrawals">
+  <% @withdrawals.each do |withdrawal| %>
+    <%= render withdrawal %>
+    <p>
+      <%= link_to "Show this withdrawal", withdrawal %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New withdrawal", new_withdrawal_path %>

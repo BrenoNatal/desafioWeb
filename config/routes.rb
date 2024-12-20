@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :withdrawals
   resources :deposits
   get "home/index"
   devise_for :accounts
