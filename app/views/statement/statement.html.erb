@@ -8,32 +8,40 @@
 <div>
 
 <div class="d-flex flex-wrap flex-row gap-3">
-    <% @list_deposits.each do |deposit| %>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Deposito de:</h5>
-            <p class="card-text">R$ <%= deposit.amount%></p>
-            <p class="card-text">Feito em <%= deposit.created_at.in_time_zone('Brasilia').strftime("%d-%m-%Y %H:%M:%S") %></p>
-        </div>
-    </div>
-    <% end %>
-    <% @list_withdrawals.each do |withdrawal| %>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Saque de:</h5>
-            <p class="card-text">R$ <%= withdrawal.amount%></p>
-            <p class="card-text">Feito em <%= withdrawal.created_at.in_time_zone('Brasilia').strftime("%d-%m-%Y %H:%M:%S") %></p>
-        </div>
-    </div>
-    <% end %>
-    <% @list_transactions.each do |transaction| %>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Transição de:</h5>
-            <p class="card-text">R$ <%= transaction.amount%></p>
-            <p class="card-text">Feito em <%= transaction.created_at.in_time_zone('Brasilia').strftime("%d-%m-%Y %H:%M:%S") %></p>
-            <p class="card-text">De: <%= transaction.account_num_source %> Para: <%= transaction.account_num_target %></p>
-        </div>
-    </div>
+
+   <% @all_movements.each do |movement| %>
+        <% case movement %>
+        <% when Deposit %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Deposito de:</h5>
+                    <p class="card-text">R$ <%= movement.amount%></p>
+                    <p class="card-text">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d-%m-%Y %H:%M:%S") %></p>
+                </div>
+            </div>
+        <% when Withdrawal %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Saque de:</h5>
+                    <p class="card-text">R$ <%= movement.amount%></p>
+                    <p class="card-text">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d-%m-%Y %H:%M:%S") %></p>
+                </div>
+            </div>
+        <% when Transaction %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Transição de:</h5>
+                    <p class="card-text">R$ <%= movement.amount%></p>
+                    <p class="card-text">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d-%m-%Y %H:%M:%S") %></p>
+                    <p class="card-text">De: <%= movement.account_num_source %> Para: <%= movement.account_num_target %></p>
+                </div>
+            </div>
+       <% else %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Transição desconhecida:</h5>
+                </div>
+            </div>
+        <% end %>
     <% end %>
 <div>
