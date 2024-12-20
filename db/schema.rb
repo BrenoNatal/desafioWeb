@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_20_191910) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_20_192926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -35,6 +35,19 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_20_191910) do
     t.datetime "updated_at", null: false
     t.integer "account_id"
     t.index ["account_id"], name: "index_deposits_on_account_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.decimal "amount"
+    t.text "description"
+    t.integer "account_id_target"
+    t.integer "account_id_source"
+    t.integer "account_num_target"
+    t.integer "account_num_source"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id_source"], name: "index_transactions_on_account_id_source"
+    t.index ["account_id_target"], name: "index_transactions_on_account_id_target"
   end
 
   create_table "withdrawals", force: :cascade do |t|

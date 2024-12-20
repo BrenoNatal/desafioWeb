@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :transactions
   resources :withdrawals
   resources :deposits
   get "home/index"
+  get "statement/statement"
   devise_for :accounts
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

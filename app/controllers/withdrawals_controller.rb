@@ -1,4 +1,5 @@
 class WithdrawalsController < ApplicationController
+  before_action :authenticate_account!
   before_action :set_withdrawal, only: %i[ show edit update destroy ]
 
   # GET /withdrawals or /withdrawals.json
