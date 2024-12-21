@@ -9,9 +9,9 @@ class ServicesController < ApplicationController
 
       account.save
 
-      redirect_to services_path, notice: "Service criada com sucesso."
+      redirect_to statement_statement_path, notice: "Visita agendada com sucesso."
     else
-      redirect_to services_path, alert: "Erro ao criar a service."
+      redirect_to statement_statement_path, notice: "Erro ao agendar visita."
     end
   end
 

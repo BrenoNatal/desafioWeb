@@ -36,7 +36,7 @@ class DepositsController < ApplicationController
         # Salva as mudanças
         account.save
 
-        format.html { redirect_to @deposit, notice: "Deposit was successfully created." }
+        format.html { redirect_to @deposit, notice: "Deposito feito com sucesso." }
         format.json { render :show, status: :created, location: @deposit }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -48,7 +48,7 @@ class TransactionsController < ApplicationController
         account_target.save
         account_source.save
 
-        format.html { redirect_to @transaction, notice: "Transaction was successfully created." }
+        format.html { redirect_to @transaction, notice: "Transferência feita com sucesso." }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new, status: :unprocessable_entity }

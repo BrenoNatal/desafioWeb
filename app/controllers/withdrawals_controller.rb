@@ -36,7 +36,7 @@ class WithdrawalsController < ApplicationController
         # Salva as mudanças
         account.save
 
-        format.html { redirect_to @withdrawal, notice: "Withdrawal was successfully created." }
+        format.html { redirect_to @withdrawal, notice: "Saque feito com sucesso." }
         format.json { render :show, status: :created, location: @withdrawal }
       else
         format.html { render :new, status: :unprocessable_entity }
