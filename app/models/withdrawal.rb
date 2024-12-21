@@ -6,6 +6,7 @@ class Withdrawal < ApplicationRecord
   validates :amount, numericality: { greater_than: 0 }
   validate :account_id, :amount, :validate_withdrawal
 
+  # Valida o valor do saque e se a conta existe
   def validate_withdrawal
     account = Account.where(id: account_id)[0]
 

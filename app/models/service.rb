@@ -6,6 +6,7 @@ class Service < ApplicationRecord
   validate :account_id, :amount, :validate_service
 
 
+  # Validada se a conta pode acessar o serviço, checando se é vip e tem o saldo para pagar
   def validate_service
     account = Account.find_by(id: account_id)
 

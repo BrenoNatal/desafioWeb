@@ -38,10 +38,10 @@ en:
         amount: "Valor"
       withdrawal:
         amount: "Valor"
-      transacrion:
+      transaction:
         amount: "Valor"
         account_num_target: "Numero da Conta Alvo"
-        account_num_source: "Numero da Conta Destino"
+        account_num_source: "Numero da Conta Fonte"
         description: "Descrição"
         fee: "Tarifa"
       service: 

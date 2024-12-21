@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+  # Cria o serviço da visita do gerente
   def create
     @service = Service.new(service_params)
 

@@ -2,6 +2,7 @@ class StatementController < ApplicationController
   before_action :authenticate_account!
 
   def statement
+    # Pega os dados das movimentações para pagina de extrato
     if account_signed_in?
       account = current_account
       @list_deposits =  account.deposits

@@ -13,6 +13,9 @@ class Transaction < ApplicationRecord
   validate :account_id_source, :amount, :validate_transaction
 
 
+  # Valida a conta destino da transferencia, checa se existe
+  # Se não existe coloca o id como -1
+  # Se existe pega o id
   def validate_account_num
     account_target = Account.find_by(account_num: account_num_target)
 
@@ -23,17 +26,18 @@ class Transaction < ApplicationRecord
     end
   end
 
+  # Valida o valor da transeferencia
   def validate_transaction
     account = Account.where(id: account_id_source)[0]
 
     if amount
       if ! account.vip?
         if amount > 1000 || amount > account.balance
-          errors.add(:amount, "Valor maior que o permitido")
+          errors.add(:amount, " maior que o permitido")
         end
       end
     else
-      errors.add(:amount, "Transição precisa ter valor")
+      errors.add("A ", "Transição precisa ter valor")
     end
   end
 end

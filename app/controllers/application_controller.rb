@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # Configuração de paramentro para permitir login com account_num
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [ :email, :account_num, :password, :password_confirmation, :vip ])
     devise_parameter_sanitizer.permit(:sign_in, keys: [ :login, :password, :password_confirmation ])
