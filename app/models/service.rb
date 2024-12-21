@@ -2,14 +2,22 @@ class Service < ApplicationRecord
   belongs_to :account
 
   validates :amount, numericality: { greater_than: 0 }
+  validates :amount, :service_type, presence: true
   validate :account_id, :amount, :validate_service
+
 
   def validate_service
     account = Account.find_by(id: account_id)
 
     if ! account.vip?
-      if amount > 1000 || amount > account.balance
-        errors.add(:amount, "Valor maior que o permitido")
+      errors.add(:account_id, "A conta não é vip")
+    else
+      if amount
+        if amount > account.balance
+          errors.add(:amount, "O saldo não é o suficieente para a visita")
+        end
+      else
+        errors.add(:amount, "Serviço sem valor")
       end
     end
   end

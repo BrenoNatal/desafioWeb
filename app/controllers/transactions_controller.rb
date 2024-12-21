@@ -24,31 +24,29 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
 
+    # Busca as contas envolvidas na Transferência
+    account_target = Account.find_by(account_num: @transaction.account_num_target)
+    account_source = Account.find_by(account_num: @transaction.account_num_source)
+
+    # Taxa de transferencia
+    if account_source.vip
+      @transaction.fee = (@transaction.amount * 0.008)
+      account_source.balance = account_source.balance - (@transaction.amount * 0.008)
+    else
+      @transaction.fee = 8
+      account_source.balance = account_source.balance -  8
+    end
+
     respond_to do |format|
       if @transaction.save
-
-        # Busca as contas envolvidas na Transferência
-        account_target = Account.find_by(account_num: @transaction.account_num_target)
-        account_source = Account.find_by(account_num: @transaction.account_num_source)
 
         # Atualiza o saldo das contas
         account_target.balance = account_target.balance + @transaction.amount
         account_source.balance = account_source.balance - @transaction.amount
 
-        # Taxa de transferencia
-        if account_source.vip
-          @transaction.fee = (@transaction.amount * 0.008)
-          account_source.balance = account_source.balance - (@transaction.amount * 0.008)
-        else
-          @transaction.fee = 8
-          account_source.balance = account_source.balance -  8
-        end
-
-        # Salva as mudanças
+        # Salva as mudanças das contas envolvidas somente se a transferencia for sucedida
         account_target.save
         account_source.save
-
-        @transaction.save
 
         format.html { redirect_to @transaction, notice: "Transaction was successfully created." }
         format.json { render :show, status: :created, location: @transaction }
