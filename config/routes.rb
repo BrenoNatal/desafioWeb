@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :transactions
   resources :withdrawals
   resources :deposits
+  resources :services, only: [ :create ]
+
 
   get "home/index"
   get "statement/statement"

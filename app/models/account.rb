@@ -8,6 +8,7 @@ class Account < ApplicationRecord
 
   has_many :deposits
   has_many :withdrawals
+  has_many :services
 
   has_many :transactions_source, class_name: "Transactions", foreign_key: "account_id_source"
   has_many :transactions_target, class_name: "Transactions", foreign_key: "account_id_target"

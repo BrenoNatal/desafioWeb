@@ -36,10 +36,18 @@
                     <%= link_to "Ver Detalhes", movement, class:"btn btn-primary mt-auto" %>
                 </div>
             </div>
+        <% when Service %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title mb-3">Serviço de: R$ <%= number_with_precision(movement.amount, :precision => 2) %> </h5>                    
+                    <h6 class="card-text mb-3">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d/%m/%Y  às %H:%M:%S") %></h6>
+                    <h6 class="card-text mb-3">Tipo de Serviço: <%= movement.service_type %></h6>
+                </div>
+            </div>
        <% else %>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Transição desconhecida:</h5>
+                    <h5 class="card-title">Transição desconhecida: <%= movement.inspect %></h5>
                 </div>
             </div>
         <% end %>

@@ -10,31 +10,38 @@
            <%= link_to 'Home', root_path, class:"nav-link active" %>
         </li>
         <% if account_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'Ver Extrato', statement_statement_path , class:"nav-link active" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Realizar Deposito', new_deposit_path, class:"nav-link active" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Realizar Saque', new_withdrawal_path, class:"nav-link active" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Realizar Transferência', new_transaction_path, class:"nav-link active" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to 'Sair da Conta', destroy_account_session_path, data: { turbo_method: :delete}, class:"nav-link active" %>
-            </li>
-        <% else %>
-             <li class="nav-item">
-                <%= link_to 'Entrar na Conta', new_account_session_path, class:"nav-link active" %>
-            </li>
-            <li class="nav-item">
-                <%= link_to 'Criar Conta', new_account_registration_path, class:"nav-link active" %>
-            </li>
+          <li class="nav-item">
+            <%= link_to 'Ver Extrato', statement_statement_path , class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Realizar Deposito', new_deposit_path, class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Realizar Saque', new_withdrawal_path, class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Realizar Transferência', new_transaction_path, class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+              <%= link_to 'Sair da Conta', destroy_account_session_path, data: { turbo_method: :delete}, class:"nav-link active" %>
+          </li>
+          <% else %>
+          <li class="nav-item">
+              <%= link_to 'Entrar na Conta', new_account_session_path, class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+              <%= link_to 'Criar Conta', new_account_registration_path, class:"nav-link active" %>
+          </li>
         <% end %>
 
       </ul>
+      <% if account_signed_in? %>
+        <% if current_account.vip? %>
+          <div class="d-flex">
+            <%= button_to 'Agendar Visita Gerente', services_path, method: :post, data: { turbo_confirm: 'Você tem certeza que deseja agendar uma visita?' }, params: { service: { service_type: 'Visita Gerente', amount: 50, account_id: current_account.id } }, class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </nav>
