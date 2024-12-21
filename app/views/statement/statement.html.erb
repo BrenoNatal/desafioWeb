@@ -33,6 +33,7 @@
                     <h5 class="card-title mb-3">Transição de: R$ <%= number_with_precision(movement.amount, :precision => 2) %> </h5>                    
                     <h6 class="card-text mb-3">Feito em <%= movement.created_at.in_time_zone('Brasilia').strftime("%d/%m/%Y  às %H:%M:%S") %></h6>
                     <h6 class="card-text mb-3">De: <%= movement.account_num_source %> Para: <%= movement.account_num_target %></h6>
+                    <h6 class="card-text mb-3">Tarifa de: <%= movement.fee %></h6>
                     <%= link_to "Ver Detalhes", movement, class:"btn btn-primary mt-auto" %>
                 </div>
             </div>

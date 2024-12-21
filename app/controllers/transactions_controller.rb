@@ -35,9 +35,20 @@ class TransactionsController < ApplicationController
         account_target.balance = account_target.balance + @transaction.amount
         account_source.balance = account_source.balance - @transaction.amount
 
+        # Taxa de transferencia
+        if account_source.vip
+          @transaction.fee = (@transaction.amount * 0.008)
+          account_source.balance = account_source.balance - (@transaction.amount * 0.008)
+        else
+          @transaction.fee = 8
+          account_source.balance = account_source.balance -  8
+        end
+
         # Salva as mudanças
         account_target.save
         account_source.save
+
+        @transaction.save
 
         format.html { redirect_to @transaction, notice: "Transaction was successfully created." }
         format.json { render :show, status: :created, location: @transaction }
