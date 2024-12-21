@@ -38,7 +38,7 @@
       <% if account_signed_in? %>
         <% if current_account.vip? %>
           <div class="d-flex">
-            <%= button_to 'Agendar Visita Gerente', services_path, method: :post, data: { turbo_confirm: 'Você tem certeza que deseja agendar uma visita?' }, params: { service: { service_type: 'Visita Gerente', amount: 50, account_id: current_account.id } }, class: "btn btn-primary" %>
+            <%= button_to 'Solicitar Visita do Gerente', services_path, method: :post, data: { turbo_confirm: 'Você tem certeza que deseja agendar uma visita?' }, params: { service: { service_type: 'Visita Gerente', amount: 50, account_id: current_account.id } }, class: "btn btn-primary" %>
           </div>
         <% end %>
       <% end %>
