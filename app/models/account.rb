@@ -33,4 +33,18 @@ class Account < ApplicationRecord
   def set_defaults
     self.balance = 0 if self.balance.blank?
   end
+
+  # Método para reduzir o saldo em 0.1%
+  def reduce_balance!
+    return unless balance.negative?
+
+    # Reduz 0.1% do saldo
+    self.balance = self.balance + (self.balance *  0.001)
+    save!
+  end
+
+  # Verifica se o saldo foi suficiente para cobrir o negativo
+  def balance_positive?
+    balance >= 0
+  end
 end
