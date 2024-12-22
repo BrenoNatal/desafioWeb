@@ -32,7 +32,7 @@ class Transaction < ApplicationRecord
 
     if amount
       if ! account.vip?
-        if amount > 1000 || amount > account.balance
+        if amount > 1000 || (amount + 8) > account.balance
           errors.add(:amount, " maior que o permitido")
         end
       end
