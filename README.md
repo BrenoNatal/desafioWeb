@@ -1,24 +1,90 @@
-# README
+# Aplicação Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este é um projeto Ruby on Rails feito para antender os requisitos de um desafio.
 
-Things you may want to cover:
+## Requisitos da Aplicação
 
-* Ruby version
+### Identificação/Login do Correntista
 
-* System dependencies
+#### Entradas:
+- **Conta corrente**: 5 dígitos.
+- **Senha**: 4 dígitos.
 
-* Configuration
+### Opções Disponíveis:
 
-* Database creation
+1. **Ver Saldo**  
+   - Exibe apenas o valor atualizado em R$.
 
-* Database initialization
+2. **Extrato**  
+   - Exibe:
+     - Data.
+     - Hora.
+     - Descrição.
+     - Valor (valores negativos entre parênteses).
 
-* How to run the test suite
+3. **Saque**  
+   - **Usuário Normal**:
+     - Não pode sacar além do valor disponível em saldo.  
+   - **Usuário VIP**:
+     - Pode sacar além do saldo disponível.
+     - Saldo negativo será reduzido em **0,1% por minuto** até que depósitos suficientes sejam feitos para cobrir o saldo negativo.
 
-* Services (job queues, cache servers, search engines, etc.)
+4. **Depósito**  
+   - Permite realizar depósitos para aumentar o saldo disponível.
 
-* Deployment instructions
+5. **Transferência**  
+   - Usuário pode transferir valores informando a conta corrente do destinatário (regras aplicáveis):
+     - Não é possível transferir para si mesmo ou para contas inexistentes.
+     - Aparecerá no extrato tanto do cedente quanto do destinatário.
+     - **Usuário Normal**:
+       - Limite de transferências: **R$1.000,00**.
+       - Custo por transferência: **R$8,00** (debitado e destacado no extrato).  
+     - **Usuário VIP**:
+       - Sem limite de valor.
+       - Custo por transferência: **0,8% do valor transferido** (debitado e destacado no extrato).
 
-* ...
+6. **Solicitar Visita do Gerente**  
+   - Disponível apenas para usuários VIP.
+   - Necessária confirmação do usuário.
+   - Após confirmação, será debitado **R$50,00** da conta.
+
+7. **Trocar de Usuário**  
+   - Permite sair da conta atual e fazer login em outra conta para acessar movimentações de outros correntistas.
+
+## Versões
+
+- Ruby `~> 3.3.6`
+- Rails `~> 8.0.1`
+
+
+# Instalação e Utilização
+
+```bash
+   git clone (https://github.com/BrenoNatal/desafioWeb)
+   cd desafioWeb
+```
+- Instalação de dependências
+  
+```bash
+   bundle install
+```
+
+- Inicie o Servidor
+  
+```bash
+   rails server
+```
+
+# Contas no Site
+O projeto ta hospedado em: https://desafioweb.fly.dev
+
+
+Tem duas contas cadastradas:
+
+  Conta Vip 
+  - Numero: 11111
+  - Senha: 1234
+  
+  Conta Normal
+  - Numero: 22222
+  - Senha: 1234
